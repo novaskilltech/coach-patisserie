@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/api/coach", "destination": "/api/coach" },
+    { "source": "/(.*)", "destination": "/public/$1" }
+  ]
+}

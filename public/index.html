@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CAP Pâtissier.AI — Réussir son CAP en Reconversion Professionnelle</title>
-  <meta name="description" content="Rejoignez la révolution de la reconversion avec CAP Pâtissier.AI. 5 semaines offertes pour tout le monde, puis déblocage complet pour réussir votre examen.">
+  <title>CAP Pâtissier.AI — Structurez votre préparation en candidat libre</title>
+  <meta name="description" content="Préparez le CAP Pâtissier à votre rythme avec un parcours structuré de 52 semaines et un coach disponible 24h/24. Essayez les 5 premières semaines gratuitement.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -14,6 +14,8 @@
 
   <!-- 1. LANDING PAGE VIEW (Visitor Mode) -->
   <div id="landingPageView" class="landing-page-container">
+    
+    <!-- Header -->
     <header class="landing-header">
       <div class="logo">🧁 <span>CAP Pâtissier.AI</span></div>
       <div class="header-cta">
@@ -21,196 +23,478 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- SECTION 1: HERO -->
     <section class="hero-section">
       <div class="hero-content">
-        <span class="pill-badge">✨ Révolution Pédagogique par IA</span>
-        <h1>Rejoignez la révolution pédagogique <strong>CAP Pâtissier.AI</strong></h1>
-        <p class="hero-subtitle">Votre transformation cognitive commence aujourd'hui. Apprenez la pâtisserie professionnelle et préparez votre reconversion avec un mentor IA socratique chaleureux. <strong>Les 5 premières semaines sont 100% gratuites pour tout le monde.</strong></p>
+        <h1>Préparez votre CAP Pâtissier à votre rythme avec un coach disponible 24h/24</h1>
+        <p class="hero-subtitle">Un parcours structuré semaine après semaine pour apprendre les bases de la pâtisserie, progresser en pratique et préparer sereinement l'examen du CAP Pâtissier en candidat libre.</p>
         
         <div class="hero-ctas">
-          <button class="cta-primary-btn" onclick="startFreeTrial()">Commencer l'essai gratuit (5 semaines)</button>
-          <button class="cta-secondary-btn" onclick="openPremiumModal()">Découvrir les offres premium</button>
+          <button class="cta-primary-btn" onclick="startFreeTrial()">Commencer gratuitement</button>
+          <button class="cta-secondary-btn" onclick="scrollToSection('curriculum-anchor')">Découvrir le programme</button>
         </div>
+
+        <ul class="hero-checklist">
+          <li>✓ 5 semaines gratuites</li>
+          <li>✓ Accessible aux débutants</li>
+          <li>✓ Disponible sur ordinateur et mobile</li>
+          <li>✓ Sans engagement</li>
+        </ul>
       </div>
       
       <div class="hero-image-card">
-        <img src="apprentice_preview.png" alt="Apprenti Pâtissier en formation" class="responsive-img">
-        <div class="hero-badge-overlay">
-          <div class="badge-row">
-            <span class="badge-title">Essai Initial</span>
-            <span class="badge-value text-accent">5 Semaines Offertes</span>
-          </div>
-          <div class="badge-row">
-            <span class="badge-title">Accès Premium</span>
-            <span class="badge-value">À partir de 399 €</span>
-          </div>
-        </div>
+        <img src="apprentice_preview.png" alt="Apprenti pâtissier s'entraînant dans sa cuisine" class="responsive-img">
       </div>
     </section>
 
-    <!-- Socratic Quote Banner -->
-    <section class="quote-section">
-      <div class="quote-container">
-        <p class="quote-text">« Chaque grand pâtissier a commencé par poser les bonnes questions. CAP Pâtissier.AI vous apprend à les formuler et à y répondre comme un professionnel. Votre transformation cognitive commence aujourd'hui. »</p>
-      </div>
-    </section>
-
-    <!-- Pain Points Section -->
+    <!-- SECTION 2: LE PROBLÈME -->
     <section class="pain-points-section">
       <div class="section-title">
-        <h2>L'enfer de la préparation en candidat libre, résolu.</h2>
-        <p>Pourquoi 80% des candidats échouent sans une structure adaptée ?</p>
+        <h2>Pourquoi tant de candidats abandonnent-ils ?</h2>
+        <p>Préparer l'examen seul en candidat libre présente des difficultés réelles au quotidien :</p>
       </div>
       <div class="features-grid">
         <div class="feature-card pain">
-          <span class="feature-icon">❌</span>
-          <h3>Le gouffre financier</h3>
-          <p>Les écoles de cuisine traditionnelles coûtent entre 5 000 € et 15 000 € par an, excluant la majorité des adultes en reconversion.</p>
+          <span class="feature-icon">📁</span>
+          <h3>Le manque d'organisation</h3>
+          <p>Sans calendrier fixe, il est difficile de répartir son temps d'apprentissage sur l'année.</p>
         </div>
         <div class="feature-card pain">
-          <span class="feature-icon">❌</span>
-          <h3>L'isolement technique</h3>
-          <p>Une vidéo de recette en ligne ne vous dit pas *pourquoi* votre pâte a rétréci au four, ni comment rattraper une crème qui a grainé.</p>
+          <span class="feature-icon">🔍</span>
+          <h3>La difficulté à savoir quoi apprendre</h3>
+          <p>Le référentiel officiel du CAP est complexe et difficile à traduire en étapes concrètes.</p>
         </div>
         <div class="feature-card pain">
-          <span class="feature-icon">❌</span>
-          <h3>L'imprécision du matériel</h3>
-          <p>Les livres de recettes pros présupposent un équipement industriel. Chez soi, avec un four classique et sans robot, les techniques échouent.</p>
+          <span class="feature-icon">👥</span>
+          <h3>L'absence d'accompagnement</h3>
+          <p>Ne pas avoir de retour immédiat sur ses gestes ou la texture de ses préparations mène à l'erreur.</p>
+        </div>
+        <div class="feature-card pain">
+          <span class="feature-icon">📉</span>
+          <h3>Le manque de motivation</h3>
+          <p>Travailler seul dans sa cuisine favorise l'isolement et la perte de régularité.</p>
+        </div>
+        <div class="feature-card pain">
+          <span class="feature-icon">⚖️</span>
+          <h3>La difficulté à s'auto-évaluer</h3>
+          <p>Faute de critères clairs, il est difficile de savoir si sa réalisation correspond aux exigences du jury.</p>
         </div>
       </div>
     </section>
 
-    <!-- Solution Section -->
+    <!-- SECTION 3: LA SOLUTION -->
     <section class="solution-details-section">
+      <div class="section-title">
+        <h2>Une méthode simple et progressive</h2>
+        <p>Découvrez notre parcours conçu pour vous amener vers l'autonomie, étape par étape.</p>
+      </div>
+
       <div class="grid-2-col">
         <div class="visual-content">
-          <img src="cakes_preview.png" alt="Tartes et pâtisseries fines" class="responsive-img rounded-card">
+          <img src="cakes_preview.png" alt="Réalisation d'une tarte aux pommes classique pour l'examen" class="responsive-img rounded-card">
         </div>
         <div class="text-content">
-          <h2>La solution : Un mentor IA socratique à vos côtés</h2>
-          <p>Notre assistant virtuel ne se contente pas de vous dicter des étapes. Il utilise la <strong>méthode socratique</strong> pour vous amener à analyser vos résultats et à comprendre la physique des ingrédients.</p>
-          <ul class="benefit-list">
-            <li>✔️ <strong>Réponses directes & mémos :</strong> Obtenez des explications immédiates sur les textures ou la gélification.</li>
-            <li>✔️ <strong>Diagnostic de cuisson :</strong> Le coach vous enseigne des repères visuels de cuisson pour s'adapter à votre four personnel.</li>
-            <li>✔️ <strong>Évaluation par photo :</strong> Envoyez les images de vos réalisations pour recevoir une critique bienveillante et des pistes d'amélioration.</li>
-          </ul>
+          <div class="step-list">
+            <div class="step-item">
+              <span class="step-num">1</span>
+              <div>
+                <h4>Découvrir les bases</h4>
+                <p>Assimilez l'organisation de l'espace de travail, les mesures de précision et l'hygiène élémentaire.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">2</span>
+              <div>
+                <h4>Apprendre les techniques</h4>
+                <p>Comprenez le geste technique (fonçage, pochage, crémage, sablage) avec des fiches détaillées.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">3</span>
+              <div>
+                <h4>S'entraîner avec des recettes guidées</h4>
+                <p>Réalisez les desserts phares du programme du CAP, du gâteau de voyage à l'entremets complexe.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">4</span>
+              <div>
+                <h4>Évaluer ses progrès</h4>
+                <p>Analysez vos propres résultats visuels et gustatifs à l'aide de grilles d'auto-évaluation précises.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">5</span>
+              <div>
+                <h4>Préparer l'examen</h4>
+                <p>Entraînez-vous dans les conditions réelles avec des plannings d'examen blanc sur 4 à 5 heures.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Material Section -->
-    <section class="material-details-section">
-      <div class="grid-2-col reverse">
-        <div class="text-content">
-          <h2>Pas besoin de robot professionnel à 1 000 €</h2>
-          <p>Nous prônons la pâtisserie accessible. Le coach vous dresse la liste du kit d'ustensiles minimal indispensable et vous propose des astuces de substitution (comme l'utilisation de sacs congélation découpés comme poche à douille).</p>
-          <ul class="benefit-list">
-            <li>✔️ <strong>Kit minimaliste :</strong> Balance précise, fouet, maryse, plaque et cercles en inox.</li>
-            <li>✔️ <strong>Alternatives budget :</strong> Astuces pour éviter les dépenses superflues en phase d'apprentissage.</li>
-          </ul>
-        </div>
-        <div class="visual-content">
-          <img src="tools_preview.png" alt="Ustensiles de pâtisserie essentiels" class="responsive-img rounded-card">
-        </div>
+    <!-- SECTION 4: CE QUE CONTIENT LE PROGRAMME -->
+    <section class="program-content-section" id="curriculum-anchor">
+      <div class="section-title">
+        <h2>Un programme pédagogique complet</h2>
+        <p>Tout ce dont vous avez besoin pour structurer votre apprentissage sur un an.</p>
       </div>
-    </section>
-
-    <!-- Business Module Section -->
-    <section class="business-section card">
-      <h2>💼 Le Module Business : Devenez votre propre patron</h2>
-      <p class="section-desc">Obtenir le diplôme est une chose, savoir en vivre en est une autre. Notre <strong>Bloc 8</strong> post-CAP (inclus dans l'offre premium) vous prépare concrètement à l'entrepreneuriat :</p>
-      <div class="business-grid">
-        <div class="biz-feature">
-          <h4>📊 Calcul des Coûts</h4>
-          <p>Maîtrisez le coût matière exact de chaque recette pour ne jamais vendre à perte.</p>
-        </div>
-        <div class="biz-feature">
-          <h4>📈 Marges & Prix</h4>
-          <p>Définissez vos prix de vente et comprenez le coefficient multiplicateur professionnel.</p>
-        </div>
-        <div class="biz-feature">
-          <h4>🧁 Gamme Signature</h4>
-          <p>Apprenez à concevoir une carte restreinte mais hautement rentable de 5 produits signatures.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Future Projections -->
-    <section class="projections-section">
-      <h2>🎓 Votre avenir après la formation</h2>
-      <p class="section-desc">Le CAP Pâtissier est le seul titre officiel obligatoire reconnu en France pour ouvrir sa propre micro-entreprise ou travailler en laboratoire.</p>
       
-      <div class="projections-grid">
-        <div class="projection-card">
-          <h3>🧁 Pâtissier à Domicile / Cake Designer</h3>
-          <p class="salary">Revenu moyen : 1 800 € – 3 500 € net / mois</p>
-          <p>Lancez votre propre marque de gâteaux de voyage, de biscuits ou d'entremets sur commande depuis votre propre cuisine domestique agréée.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">📚</span>
+          <h3>Modules de formation</h3>
+          <p>52 modules hebdomadaires répartis selon le programme officiel.</p>
         </div>
-        <div class="projection-card">
-          <h3>🧑‍🍳 Ouvrier Pâtissier en boutique</h3>
-          <p class="salary">Salaire de départ : 1 600 € – 1 900 € brut / mois</p>
-          <p>Rejoignez un laboratoire de pâtisserie artisanale ou intégrez la brigade de cuisine d'un restaurant gastronomique.</p>
+        <div class="feature-card">
+          <span class="feature-icon">📝</span>
+          <h3>Fiches techniques</h3>
+          <p>Des résumés clairs des gestes de base pour les garder près du plan de travail.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">❓</span>
+          <h3>Quiz</h3>
+          <p>Des évaluations régulières pour vérifier vos connaissances en technologie et en hygiène.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🍳</span>
+          <h3>Exercices</h3>
+          <p>Des ateliers pratiques focalisés (ex: dresser 12 choux réguliers) pour entraîner votre main.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📖</span>
+          <h3>Recettes guidées</h3>
+          <p>Des fiches recettes détaillant chaque étape et les critères de réussite attendus par le jury.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📅</span>
+          <h3>Planning de progression</h3>
+          <p>Un tableau de bord clair pour cocher vos acquis et organiser vos séances.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📕</span>
+          <h3>Glossaire pâtissier</h3>
+          <p>Tous les termes professionnels du référentiel définis simplement.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">💬</span>
+          <h3>Coach conversationnel</h3>
+          <p>Un guide disponible à tout moment pour répondre à vos doutes et adapter ses conseils à votre four.</p>
         </div>
       </div>
     </section>
 
-    <!-- Pricing Comparison Table -->
+    <!-- SECTION 5: DÉMONSTRATION -->
+    <section class="demo-section">
+      <div class="section-title">
+        <h2>Découvrez l'interface de travail</h2>
+        <p>Un outil épuré et fonctionnel conçu pour vous accompagner en cuisine.</p>
+      </div>
+
+      <div class="demo-showcase-container">
+        <!-- Rendu dynamique ou statique des écrans de démonstration -->
+        <div class="demo-grid">
+          <div class="demo-card">
+            <h4>💬 Le chat avec le Coach</h4>
+            <p>Posez vos questions librement. L'IA analyse votre problème de cuisson ou de pâte et vous guide vers la solution.</p>
+            <div class="chat-demo-box">
+              <div class="msg-demo assistant"><strong>Coach</strong> : Si ta crème a grainé, c'est souvent un problème de différence de température entre le beurre et la crème pâtissière...</div>
+              <div class="msg-demo user"><strong>Élève</strong> : Est-ce que je peux la rattraper ?</div>
+              <div class="msg-demo assistant"><strong>Coach</strong> : Oui ! Tu peux la réchauffer très légèrement au bain-marie tout en fouettant doucement...</div>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h4>📖 Fiche Recette</h4>
+            <p>Une structure claire : ingrédients, matériel requis et étapes pas à pas avec critères de réussite exigés par le jury.</p>
+            <div class="recipe-demo-box">
+              <div class="recipe-demo-header">
+                <h5>Tarte au Citron Meringuée</h5>
+                <span class="difficulty-badge">★☆☆ Examen CAP</span>
+              </div>
+              <div class="recipe-ingredients-demo">
+                <strong>Ingrédients clés :</strong> Citrons (3), Beurre (150g), Sucre (120g), Œufs (3)
+              </div>
+              <div class="recipe-step-demo">
+                <strong>Étape 3 : Le Fonçage</strong>
+                <p>Abaisser la pâte sablée à 3mm. Enrouler sur le rouleau, dérouler sur le cercle beurré de 22cm. Créer un angle droit parfait à la base.</p>
+                <span class="success-criteria">✓ Critère du jury : Bord de hauteur régulière, pas de trous.</span>
+              </div>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h4>❓ Le Quiz d'Auto-Évaluation</h4>
+            <p>Validez vos connaissances théoriques (Hygiène HACCP, Technologie des aliments) après chaque bloc.</p>
+            <div class="quiz-demo-box">
+              <div class="quiz-question-demo">
+                <strong>Question :</strong> Quelle est la température réglementaire de conservation des crèmes pâtissières après cuisson ?
+              </div>
+              <div class="quiz-options-demo">
+                <div class="quiz-option-demo correct">✓ a) +3°C maximum (température réglementaire)</div>
+                <div class="quiz-option-demo">b) +10°C maximum</div>
+                <div class="quiz-option-demo">c) Température ambiante</div>
+              </div>
+              <div class="quiz-feedback-demo">
+                <p class="feedback-text"><em>Explication : Toutes les préparations à base d'œufs doivent être refroidies rapidement et stockées entre 0°C et +3°C.</em></p>
+              </div>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h4>📋 Le carnet de bord de progression</h4>
+            <p>Cochez vos étapes, suivez votre avancée à travers les blocs de formation et visualisez vos acquis.</p>
+            <div class="progress-demo-box">
+              <div class="progress-bar-demo"><div class="fill" style="width: 35%;"></div></div>
+              <p>Bloc 2 : Pâtes à tartes — 60% validé</p>
+              <ul class="progress-checklist-demo">
+                <li>✓ Pâte sablée (Terminé)</li>
+                <li>✓ Fonçage d'un cercle (Terminé)</li>
+                <li>◽ Tarte citron meringuée (À faire)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: À QUI S'ADRESSE LE PROGRAMME -->
+    <section class="target-audience-section">
+      <div class="section-title">
+        <h2>À qui s'adresse ce programme ?</h2>
+        <p>Une méthode inclusive conçue pour s'adapter à votre projet personnel.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🔄</span>
+          <h3>Adultes en reconversion</h3>
+          <p>Pour ceux qui changent de carrière et recherchent une formation flexible compatible avec leur emploi actuel.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎓</span>
+          <h3>Futurs candidats libres</h3>
+          <p>Pour préparer l'épreuve sans être inscrit en école ou en CFA.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🌱</span>
+          <h3>Débutants complets</h3>
+          <p>Aucun prérequis technique n'est nécessaire. Nous reprenons tout depuis le départ.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🧁</span>
+          <h3>Passionnés de pâtisserie</h3>
+          <p>Pour ceux qui souhaitent simplement acquérir la rigueur et les gestes de la pâtisserie professionnelle française.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">⏱️</span>
+          <h3>Emplois du temps chargés</h3>
+          <p>Le découpage en séances courtes vous permet d'avancer à votre propre rythme, quelques heures par semaine.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: CE QUE VOUS ALLEZ APPRENDRE -->
+    <section class="learning-grid-section">
+      <div class="section-title">
+        <h2>Le programme d'apprentissage</h2>
+        <p>Développez la rigueur technique d'un professionnel au fil des semaines.</p>
+      </div>
+
+      <div class="learning-grid">
+        <div class="learning-category">
+          <h4>Pâtes de base</h4>
+          <p>Pâte brisée, sablée, sucrée, feuilletée, pâte à choux, pâtes levées et brioche.</p>
+        </div>
+        <div class="learning-category">
+          <h4>Crèmes et Appareils</h4>
+          <p>Crème pâtissière, anglaise, diplomate, mousseline, crème d'amande, ganaches et meringues.</p>
+        </div>
+        <div class="learning-category">
+          <h4>Viennoiserie</h4>
+          <p>Tourage, pousse des pâtes, façonnage des croissants, pains au chocolat et brioche tressée.</p>
+        </div>
+        <div class="learning-category">
+          <h4>Organisation & Hygiène</h4>
+          <p>Règles sanitaires HACCP, marche en avant, nettoyage, désinfection et chaîne du froid.</p>
+        </div>
+        <div class="learning-category">
+          <h4>Gestes techniques</h4>
+          <p>Mesures de pesées, émulsion, foisonnement, fonçage de cercles et pochage à la douille.</p>
+        </div>
+        <div class="learning-category">
+          <h4>Décoration & Finitions</h4>
+          <p>Glaçage au fondant, nappage, dorures, décors en chocolat simples et présentation de vitrine.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: TARIFICATION -->
     <section class="pricing-comparison">
-      <h2>Une alternative évidente pour votre budget</h2>
+      <div class="section-title">
+        <h2>Une tarification claire et accessible</h2>
+        <p>Les 5 premières semaines sont offertes. Choisissez la formule qui vous convient pour débloquer l'accès complet.</p>
+      </div>
+
       <div class="table-container">
         <table>
           <thead>
             <tr>
-              <th>Critères de comparaison</th>
-              <th>Écoles Classiques (Ferrandi...)</th>
-              <th>Formations en ligne payantes</th>
-              <th class="highlight">CAP Pâtissier.AI</th>
+              <th>Type de formation</th>
+              <th>Coût financier</th>
+              <th>Format & Accompagnement</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Premières semaines</strong></td>
-              <td>0 (Payant d'entrée)</td>
-              <td>0 (Payant d'entrée)</td>
-              <td class="highlight"><strong>5 semaines gratuites (pour tous)</strong></td>
+              <td><strong>Cours présentiels (CFA / Écoles)</strong></td>
+              <td>800 € à 3 000 € / an</td>
+              <td>Horaires rigides, partagés en groupe de 15 à 20 élèves.</td>
             </tr>
             <tr>
-              <td><strong>Tarif de déblocage complet</strong></td>
-              <td>5 000 € à 15 000 € / an</td>
-              <td>400 € à 1 500 €</td>
-              <td class="highlight"><strong>399 €</strong> (ou mensualités)</td>
+              <td><strong>Cours particuliers</strong></td>
+              <td>25 € à 60 € / heure</td>
+              <td>Coût cumulé élevé sur l'année, rendez-vous fixes.</td>
             </tr>
-            <tr>
-              <td><strong>Flexibilité horaire</strong></td>
-              <td>Présentiel rigide (temps plein)</td>
-              <td>Autodidacte (sans suivi)</td>
-              <td class="highlight"><strong>100% Flexible (24h/24)</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Mentorat de Chef</strong></td>
-              <td>Partagé avec 20 élèves</td>
-              <td>Aucun ou par e-mail</td>
-              <td class="highlight"><strong>Instantanné (IA Socratique)</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Module Business inclus</strong></td>
-              <td>Non (option payante)</td>
-              <td>Non</td>
-              <td class="highlight"><strong>Oui (Inclus en Premium)</strong></td>
+            <tr class="highlight">
+              <td><strong>CAP Pâtissier.AI (Premium)</strong></td>
+              <td class="price">399 € <span class="subtext">ou mensualités (500 € total)</span></td>
+              <td><strong>Accès 24h/24, 52 semaines de cours complets et module Business.</strong></td>
             </tr>
           </tbody>
         </table>
       </div>
+
+      <div style="text-align:center; margin-top:30px;">
+        <button class="cta-primary-btn" onclick="startFreeTrial()">Découvrir les 5 semaines gratuites</button>
+      </div>
     </section>
 
-    <!-- Footer Landing -->
-    <footer class="landing-footer">
-      <p>Essayer notre plateforme sans engagement. Les 5 premières semaines du programme officiel sont offertes.</p>
-      <div class="footer-ctas" style="display:flex; justify-content:center; gap:16px;">
-        <button class="cta-primary-btn" onclick="startFreeTrial()">Je commence mon essai de 5 semaines</button>
-        <button class="cta-secondary-btn" onclick="openPremiumModal()">Voir les tarifs d'abonnement</button>
+    <!-- SECTION 9: FAQ (Minimum 15 Questions) -->
+    <section class="faq-section">
+      <div class="section-title">
+        <h2>Foire Aux Questions</h2>
+        <p>Toutes les réponses à vos interrogations sur la formation.</p>
       </div>
+
+      <div class="faq-accordion-container">
+        <div class="faq-item">
+          <h4 class="faq-question">Faut-il du matériel professionnel ?</h4>
+          <div class="faq-answer">
+            <p>Non. Le programme est spécifiquement pensé pour être réalisé dans une cuisine domestique. Le coach vous indique le matériel minimal (maryse, balance de précision, moules) et vous suggère des astuces de remplacement (comme des sacs congélation en guise de poche à douille).</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Puis-je apprendre en partant de zéro ?</h4>
+          <div class="faq-answer">
+            <p>Oui. La formation est progressive. Les premières semaines sont dédiées aux bases de l'organisation, à l'utilisation de la balance et à des gâteaux simples pour calibrer votre four. Aucun niveau préalable en cuisine n'est requis.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Le programme est-il adapté au CAP ?</h4>
+          <div class="faq-answer">
+            <p>Oui. Les 52 semaines de cours suivent scrupuleusement le référentiel officiel du CAP Pâtissier (France) : pâtes, crèmes, viennoiseries, hygiène HACCP et technologie des aliments.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Combien de temps faut-il consacrer par semaine ?</h4>
+          <div class="faq-answer">
+            <p>Nous recommandons de consacrer entre 3 et 5 heures par semaine. Le programme est découpé en séances courtes pour vous permettre de réviser la théorie et de pratiquer le week-end selon vos disponibilités.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Puis-je utiliser uniquement mon téléphone ?</h4>
+          <div class="faq-answer">
+            <p>Oui. Notre application est entièrement responsive et mobile-first. Vous pouvez l'utiliser sur smartphone, tablette ou ordinateur près de votre plan de travail.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Comment fonctionne l'essai gratuit de 5 semaines ?</h4>
+          <div class="faq-answer">
+            <p>L'accès aux 5 premiers modules hebdomadaires (Bloc 1 : Bases & Organisation) est 100% gratuit et ouvert à tous, sans qu'aucune saisie de carte bancaire ne soit demandée.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Qu'est-ce qui est inclus dans l'accès Premium ?</h4>
+          <div class="faq-answer">
+            <p>L'accès Premium débloque l'intégralité du parcours (Semaines 6 à 52), tous les quiz d'évaluation, les fiches techniques avancées, les simulations d'examen pratique et le module complet de création d'entreprise (Bloc 8).</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Quelles sont les formules de paiement pour l'accès Premium ?</h4>
+          <div class="faq-answer">
+            <p>Vous pouvez régler en une seule fois au tarif de 399 €, ou opter pour un paiement échelonné par mensualités de 100 € par mois (pour un total de 500 €).</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Le coach peut-il corriger mes erreurs de cuisson ?</h4>
+          <div class="faq-answer">
+            <p>Oui. Vous pouvez lui décrire le résultat de vos gâteaux ou lui envoyer des photos. Il analysera les causes probables du défaut (four trop chaud, manque de repos de la pâte, etc.) et vous donnera 1 à 3 pistes d'amélioration.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Le programme aborde-t-il les règles d'hygiène HACCP ?</h4>
+          <div class="faq-answer">
+            <p>Oui. L'hygiène, la désinfection du plan de travail, la marche en avant et le respect de la chaîne du froid sont intégrés et évalués de manière systématique tout au long du programme.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Puis-je adapter les recettes si j'ai des contraintes alimentaires ?</h4>
+          <div class="faq-answer">
+            <p>Oui. Le coach peut vous proposer des alternatives adaptées (sans gélatine porcine, sans alcool, ou avec des substituts de lait), tout en vous rappelant la version classique exigée le jour de l'examen.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Qu'est-ce que le module Business post-CAP ?</h4>
+          <div class="faq-answer">
+            <p>C'est un module de 4 semaines conçu pour vous aider à lancer votre micro-entreprise après l'obtention du diplôme : gestion de la tarification, élaboration d'une gamme de produits rentable et marketing de départ.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Y a-t-il des examens blancs ?</h4>
+          <div class="faq-answer">
+            <p>Oui. Le Bloc 6 (Semaines 31 à 40) contient des simulations de sujets partiels et complets pour vous entraîner à gérer votre temps (épreuves de 4 à 5 heures) et à dresser votre rétroplanning.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Puis-je exporter ma progression ?</h4>
+          <div class="faq-answer">
+            <p>Oui. Un bouton de réinitialisation et de gestion locale vous permet de maîtriser vos données. La progression est enregistrée localement dans le cache de votre navigateur.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">Quelle est la durée de validité de mon accès ?</h4>
+          <div class="faq-answer">
+            <p>Une fois débloqué, votre accès à CAP Pâtissier.AI est permanent et illimité. Vous pouvez réviser et utiliser l'outil aussi longtemps que vous le souhaitez.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: CTA FINAL -->
+    <section class="cta-final-section">
+      <div class="section-title">
+        <h2>Commencez gratuitement aujourd'hui</h2>
+        <p>Découvrez la méthode pendant 5 semaines sans engagement.</p>
+      </div>
+      <button class="cta-primary-btn" onclick="startFreeTrial()">Commencer gratuitement</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="landing-footer" style="margin-top:60px; border-top:1px solid var(--border-light); padding-top:30px;">
+      <p>© 2026 CAP Pâtissier.AI. Tous droits réservés. Mentions Légales & Confidentialité.</p>
     </footer>
   </div>
 
@@ -367,7 +651,7 @@
 
         <div class="form-group">
           <label for="inputSession">Session du CAP visée :</label>
-          <input type="text" id="inputSession" placeholder="Ex: Juin 2027" required>
+          <input type="text" id="inputSession" placeholder="Ex: Juin 2026" required>
         </div>
 
         <button type="submit" class="primary-btn">Accéder à mon espace d'étude</button>

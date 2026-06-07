@@ -1,0 +1,17 @@
+# Secrets
+.env
+.env.local
+.env.*
+
+# Dependencies
+node_modules/
+functions/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build outputs
+dist/
+build/
+.firebase/

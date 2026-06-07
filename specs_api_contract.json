@@ -1,0 +1,61 @@
+{
+  "endpoint": "/api/coach",
+  "method": "POST",
+  "auth_required": false,
+  "request": {
+    "properties": {
+      "message": {
+        "type": "string",
+        "description": "Le message envoyé par l'élève pâtissier."
+      },
+      "semaine_active": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 56,
+        "description": "La semaine en cours (1 à 52 pour le CAP, 53 à 56 pour le module Business)."
+      },
+      "contexte_eleve": {
+        "type": "object",
+        "properties": {
+          "niveau": {"type": "string", "enum": ["débutant", "intermédiaire", "avancé"]},
+          "type_four": {"type": "string", "enum": ["gaz", "électrique", "chaleur_tournante", "statique"]},
+          "a_robot": {"type": "boolean"},
+          "temps_disponible": {"type": "string"}
+        },
+        "required": ["niveau", "type_four", "a_robot"]
+      },
+      "historique_messages": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "role": {"type": "string", "enum": ["user", "model"]},
+            "text": {"type": "string"}
+          },
+          "required": ["role", "text"]
+        },
+        "description": "Les 5 derniers messages échangés pour conserver le fil de la conversation."
+      }
+    },
+    "required": ["message", "semaine_active", "contexte_eleve"]
+  },
+  "response": {
+    "status_200": {
+      "properties": {
+        "response_text": {
+          "type": "string",
+          "description": "La réponse pédagogique du coach, formatée en markdown."
+        },
+        "suggestions_rapides": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "3 suggestions de questions rapides basées sur la réponse."
+        }
+      },
+      "required": ["response_text", "suggestions_rapides"]
+    },
+    "status_429": {
+      "description": "Rate limiting dépassé (trop de messages en peu de temps)."
+    }
+  }
+}

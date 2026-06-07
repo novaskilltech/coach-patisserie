@@ -1,0 +1,108 @@
+{
+  "blocs": [
+    {
+      "id": 1,
+      "titre": "Bases & organisation",
+      "semaines": [
+        {"num": 1, "titre": "Découverte, hygiène & organisation"},
+        {"num": 2, "titre": "Ingrédients & premiers gâteaux"},
+        {"num": 3, "titre": "Œufs, laits, levures & gestion du four"},
+        {"num": 4, "titre": "Gestes techniques & organisation perso"}
+      ]
+    },
+    {
+      "id": 2,
+      "titre": "Pâtes à tartes & crèmes de base",
+      "semaines": [
+        {"num": 5, "titre": "Pâtes sablée, sucrée, brisée (bases)"},
+        {"num": 6, "titre": "Tartes fruits classiques"},
+        {"num": 7, "titre": "Crèmes de base (pâtissière, diplomate, mousseline)"},
+        {"num": 8, "titre": "Tartes citron & meringue"},
+        {"num": 9, "titre": "Révisions tartes & crèmes (1er bloc)"}
+      ]
+    },
+    {
+      "id": 3,
+      "titre": "Pâte à choux & petits gâteaux",
+      "semaines": [
+        {"num": 10, "titre": "Pâte à choux (bases)"},
+        {"num": 11, "titre": "Éclairs classiques"},
+        {"num": 12, "titre": "Religieuses & variantes"},
+        {"num": 13, "titre": "Génoises & biscuits"},
+        {"num": 14, "titre": "Révision choux & petits gâteaux"},
+        {"num": 15, "titre": "Gâteaux de voyage (cakes, financiers, madeleines)"}
+      ]
+    },
+    {
+      "id": 4,
+      "titre": "Entremets & montages",
+      "semaines": [
+        {"num": 16, "titre": "Crèmes bavaroises & mousses"},
+        {"num": 17, "titre": "Entremets fruités"},
+        {"num": 18, "titre": "Fraisier / framboisier"},
+        {"num": 19, "titre": "Biscuits techniques (joconde, dacquoise)"},
+        {"num": 20, "titre": "Synthèse entremets"},
+        {"num": 21, "titre": "Théorie techno : ingrédients & réactions"},
+        {"num": 22, "titre": "Consolidation globale (tartes + choux + entremets)"}
+      ]
+    },
+    {
+      "id": 5,
+      "titre": "Feuilletage, viennoiseries & brioches",
+      "semaines": [
+        {"num": 23, "titre": "Pâte feuilletée"},
+        {"num": 24, "titre": "Mille-feuille"},
+        {"num": 25, "titre": "Pâte levée feuilletée (croissants)"},
+        {"num": 26, "titre": "Pains au chocolat & variantes"},
+        {"num": 27, "titre": "Brioches"},
+        {"num": 28, "titre": "Décors simples & finitions"},
+        {"num": 29, "titre": "Hygiène HACCP (niveau CAP)"},
+        {"num": 30, "titre": "Gestion, coût & environnement pro"}
+      ]
+    },
+    {
+      "id": 6,
+      "titre": "Préparation examen pratique",
+      "semaines": [
+        {"num": 31, "titre": "Lecture de sujet & rétroplanning"},
+        {"num": 32, "titre": "Sujet partiel 'tartes + gâteaux de voyage'"},
+        {"num": 33, "titre": "Sujet partiel 'choux + crème'"},
+        {"num": 34, "titre": "Sujet partiel 'entremets'"},
+        {"num": 35, "titre": "Sujet partiel 'viennoiseries/brioches'"},
+        {"num": 36, "titre": "Révision théorique générale (techno + hygiène)"},
+        {"num": 37, "titre": "Rattrapage ciblé"},
+        {"num": 38, "titre": "Sujet blanc complet n°1 (temps assoupli)"},
+        {"num": 39, "titre": "Analyse approfondie & corrections techniques"},
+        {"num": 40, "titre": "Sujet blanc complet n°2 (temps réaliste)"}
+      ]
+    },
+    {
+      "id": 7,
+      "titre": "Dernière ligne droite",
+      "semaines": [
+        {"num": 41, "titre": "Révisions pratiques par famille"},
+        {"num": 42, "titre": "Révisions théoriques ciblées"},
+        {"num": 43, "titre": "Sujet blanc n°3 (orienté faiblesses)"},
+        {"num": 44, "titre": "Recettes tendance & motivation"},
+        {"num": 45, "titre": "Check-list 'tout le programme'"},
+        {"num": 46, "titre": "Révision hygiène & organisation jour J"},
+        {"num": 47, "titre": "Simulation jour J (complète, chronométrée)"},
+        {"num": 48, "titre": "Ajustements & confiance"},
+        {"num": 49, "titre": "Simplification & automatisation des gestes"},
+        {"num": 50, "titre": "Préparation logistique"},
+        {"num": 51, "titre": "Ultra-light : entretien final avec l'IA"},
+        {"num": 52, "titre": "Après l'examen / révisions souples"}
+      ]
+    },
+    {
+      "id": 8,
+      "titre": "Module Business (Post-CAP)",
+      "semaines": [
+        {"num": 53, "titre": "Projet pro, cadre légal & hygiène"},
+        {"num": 54, "titre": "Gamme de produits signature & tarification"},
+        {"num": 55, "titre": "Organisation des commandes & production"},
+        {"num": 56, "titre": "Communication, marketing & plan d'action"}
+      ]
+    }
+  ]
+}

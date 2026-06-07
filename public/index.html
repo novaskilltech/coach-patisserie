@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAP Pâtissier.AI — Réussir son CAP en Reconversion Professionnelle</title>
+  <meta name="description" content="Rejoignez la révolution de la reconversion avec CAP Pâtissier.AI. 5 semaines offertes pour tout le monde, puis déblocage complet pour réussir votre examen.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. LANDING PAGE VIEW (Visitor Mode) -->
+  <div id="landingPageView" class="landing-page-container">
+    <header class="landing-header">
+      <div class="logo">🧁 <span>CAP Pâtissier.AI</span></div>
+      <div class="header-cta">
+        <button class="secondary-btn-outline" onclick="startFreeTrial()">Découvrir gratuitement</button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <span class="pill-badge">✨ Révolution Pédagogique par IA</span>
+        <h1>Rejoignez la révolution pédagogique <strong>CAP Pâtissier.AI</strong></h1>
+        <p class="hero-subtitle">Votre transformation cognitive commence aujourd'hui. Apprenez la pâtisserie professionnelle et préparez votre reconversion avec un mentor IA socratique chaleureux. <strong>Les 5 premières semaines sont 100% gratuites pour tout le monde.</strong></p>
+        
+        <div class="hero-ctas">
+          <button class="cta-primary-btn" onclick="startFreeTrial()">Commencer l'essai gratuit (5 semaines)</button>
+          <button class="cta-secondary-btn" onclick="openPremiumModal()">Découvrir les offres premium</button>
+        </div>
+      </div>
+      
+      <div class="hero-image-card">
+        <img src="apprentice_preview.png" alt="Apprenti Pâtissier en formation" class="responsive-img">
+        <div class="hero-badge-overlay">
+          <div class="badge-row">
+            <span class="badge-title">Essai Initial</span>
+            <span class="badge-value text-accent">5 Semaines Offertes</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-title">Accès Premium</span>
+            <span class="badge-value">À partir de 399 €</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Socratic Quote Banner -->
+    <section class="quote-section">
+      <div class="quote-container">
+        <p class="quote-text">« Chaque grand pâtissier a commencé par poser les bonnes questions. CAP Pâtissier.AI vous apprend à les formuler et à y répondre comme un professionnel. Votre transformation cognitive commence aujourd'hui. »</p>
+      </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="pain-points-section">
+      <div class="section-title">
+        <h2>L'enfer de la préparation en candidat libre, résolu.</h2>
+        <p>Pourquoi 80% des candidats échouent sans une structure adaptée ?</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card pain">
+          <span class="feature-icon">❌</span>
+          <h3>Le gouffre financier</h3>
+          <p>Les écoles de cuisine traditionnelles coûtent entre 5 000 € et 15 000 € par an, excluant la majorité des adultes en reconversion.</p>
+        </div>
+        <div class="feature-card pain">
+          <span class="feature-icon">❌</span>
+          <h3>L'isolement technique</h3>
+          <p>Une vidéo de recette en ligne ne vous dit pas *pourquoi* votre pâte a rétréci au four, ni comment rattraper une crème qui a grainé.</p>
+        </div>
+        <div class="feature-card pain">
+          <span class="feature-icon">❌</span>
+          <h3>L'imprécision du matériel</h3>
+          <p>Les livres de recettes pros présupposent un équipement industriel. Chez soi, avec un four classique et sans robot, les techniques échouent.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-details-section">
+      <div class="grid-2-col">
+        <div class="visual-content">
+          <img src="cakes_preview.png" alt="Tartes et pâtisseries fines" class="responsive-img rounded-card">
+        </div>
+        <div class="text-content">
+          <h2>La solution : Un mentor IA socratique à vos côtés</h2>
+          <p>Notre assistant virtuel ne se contente pas de vous dicter des étapes. Il utilise la <strong>méthode socratique</strong> pour vous amener à analyser vos résultats et à comprendre la physique des ingrédients.</p>
+          <ul class="benefit-list">
+            <li>✔️ <strong>Réponses directes & mémos :</strong> Obtenez des explications immédiates sur les textures ou la gélification.</li>
+            <li>✔️ <strong>Diagnostic de cuisson :</strong> Le coach vous enseigne des repères visuels de cuisson pour s'adapter à votre four personnel.</li>
+            <li>✔️ <strong>Évaluation par photo :</strong> Envoyez les images de vos réalisations pour recevoir une critique bienveillante et des pistes d'amélioration.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Material Section -->
+    <section class="material-details-section">
+      <div class="grid-2-col reverse">
+        <div class="text-content">
+          <h2>Pas besoin de robot professionnel à 1 000 €</h2>
+          <p>Nous prônons la pâtisserie accessible. Le coach vous dresse la liste du kit d'ustensiles minimal indispensable et vous propose des astuces de substitution (comme l'utilisation de sacs congélation découpés comme poche à douille).</p>
+          <ul class="benefit-list">
+            <li>✔️ <strong>Kit minimaliste :</strong> Balance précise, fouet, maryse, plaque et cercles en inox.</li>
+            <li>✔️ <strong>Alternatives budget :</strong> Astuces pour éviter les dépenses superflues en phase d'apprentissage.</li>
+          </ul>
+        </div>
+        <div class="visual-content">
+          <img src="tools_preview.png" alt="Ustensiles de pâtisserie essentiels" class="responsive-img rounded-card">
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Module Section -->
+    <section class="business-section card">
+      <h2>💼 Le Module Business : Devenez votre propre patron</h2>
+      <p class="section-desc">Obtenir le diplôme est une chose, savoir en vivre en est une autre. Notre <strong>Bloc 8</strong> post-CAP (inclus dans l'offre premium) vous prépare concrètement à l'entrepreneuriat :</p>
+      <div class="business-grid">
+        <div class="biz-feature">
+          <h4>📊 Calcul des Coûts</h4>
+          <p>Maîtrisez le coût matière exact de chaque recette pour ne jamais vendre à perte.</p>
+        </div>
+        <div class="biz-feature">
+          <h4>📈 Marges & Prix</h4>
+          <p>Définissez vos prix de vente et comprenez le coefficient multiplicateur professionnel.</p>
+        </div>
+        <div class="biz-feature">
+          <h4>🧁 Gamme Signature</h4>
+          <p>Apprenez à concevoir une carte restreinte mais hautement rentable de 5 produits signatures.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Future Projections -->
+    <section class="projections-section">
+      <h2>🎓 Votre avenir après la formation</h2>
+      <p class="section-desc">Le CAP Pâtissier est le seul titre officiel obligatoire reconnu en France pour ouvrir sa propre micro-entreprise ou travailler en laboratoire.</p>
+      
+      <div class="projections-grid">
+        <div class="projection-card">
+          <h3>🧁 Pâtissier à Domicile / Cake Designer</h3>
+          <p class="salary">Revenu moyen : 1 800 € – 3 500 € net / mois</p>
+          <p>Lancez votre propre marque de gâteaux de voyage, de biscuits ou d'entremets sur commande depuis votre propre cuisine domestique agréée.</p>
+        </div>
+        <div class="projection-card">
+          <h3>🧑‍🍳 Ouvrier Pâtissier en boutique</h3>
+          <p class="salary">Salaire de départ : 1 600 € – 1 900 € brut / mois</p>
+          <p>Rejoignez un laboratoire de pâtisserie artisanale ou intégrez la brigade de cuisine d'un restaurant gastronomique.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Comparison Table -->
+    <section class="pricing-comparison">
+      <h2>Une alternative évidente pour votre budget</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Critères de comparaison</th>
+              <th>Écoles Classiques (Ferrandi...)</th>
+              <th>Formations en ligne payantes</th>
+              <th class="highlight">CAP Pâtissier.AI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Premières semaines</strong></td>
+              <td>0 (Payant d'entrée)</td>
+              <td>0 (Payant d'entrée)</td>
+              <td class="highlight"><strong>5 semaines gratuites (pour tous)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Tarif de déblocage complet</strong></td>
+              <td>5 000 € à 15 000 € / an</td>
+              <td>400 € à 1 500 €</td>
+              <td class="highlight"><strong>399 €</strong> (ou mensualités)</td>
+            </tr>
+            <tr>
+              <td><strong>Flexibilité horaire</strong></td>
+              <td>Présentiel rigide (temps plein)</td>
+              <td>Autodidacte (sans suivi)</td>
+              <td class="highlight"><strong>100% Flexible (24h/24)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Mentorat de Chef</strong></td>
+              <td>Partagé avec 20 élèves</td>
+              <td>Aucun ou par e-mail</td>
+              <td class="highlight"><strong>Instantanné (IA Socratique)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Module Business inclus</strong></td>
+              <td>Non (option payante)</td>
+              <td>Non</td>
+              <td class="highlight"><strong>Oui (Inclus en Premium)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer Landing -->
+    <footer class="landing-footer">
+      <p>Essayer notre plateforme sans engagement. Les 5 premières semaines du programme officiel sont offertes.</p>
+      <div class="footer-ctas" style="display:flex; justify-content:center; gap:16px;">
+        <button class="cta-primary-btn" onclick="startFreeTrial()">Je commence mon essai de 5 semaines</button>
+        <button class="cta-secondary-btn" onclick="openPremiumModal()">Voir les tarifs d'abonnement</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 2. APPLICATION VIEW (App Mode - Hidden by default) -->
+  <div id="appWorkspaceView" class="app-container" style="display: none;">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <span class="logo-icon">🧁</span>
+        <h1>CAP Pâtissier.AI</h1>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <button class="nav-btn active" data-tab="dashboard">
+          <span class="btn-icon">📋</span> Tableau de bord (52s)
+        </button>
+        <button class="nav-btn" data-tab="chat">
+          <span class="btn-icon">💬</span> Mon Coach Personnel
+        </button>
+        <button class="nav-btn" data-tab="glossaire">
+          <span class="btn-icon">📖</span> Glossaire Technique
+        </button>
+        <button class="nav-btn" data-tab="privacy">
+          <span class="btn-icon">🛡️</span> Vie Privée
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="reset-data-btn" id="resetDataBtn">🔄 Réinitialiser mes données</button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <header class="main-header">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <div class="header-user-status">
+          <span class="badge-accent" id="userOvenBadge">Four électrique ⚡</span>
+          <span class="progress-percent" id="globalProgressPercent">0% complété</span>
+        </div>
+      </header>
+
+      <!-- Tab Content: Dashboard -->
+      <section class="tab-content active" id="tab-dashboard">
+        <div class="welcome-banner" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+          <div>
+            <h2>Mon Parcours de Reconversion</h2>
+            <p>Suivez le programme officiel du CAP Pâtissier semaine après semaine.</p>
+          </div>
+          <div id="premiumStatusContainer">
+            <span class="badge-accent" style="background-color: var(--color-primary); color: var(--text-main);">Mode Essai (S1-S5) 🎁</span>
+          </div>
+        </div>
+
+        <div class="curriculum-container" id="curriculumContainer">
+          <!-- Blocs et semaines générés dynamiquement par JS -->
+        </div>
+      </section>
+
+      <!-- Tab Content: Chat -->
+      <section class="tab-content" id="tab-chat">
+        <div class="chat-wrapper">
+          <div class="chat-header">
+            <h3>💬 Conversation avec Coach IA</h3>
+            <p>Posez vos questions sur la théorie, les pâtes ou vos techniques de préparation.</p>
+          </div>
+
+          <div class="chat-messages" id="chatMessages">
+            <div class="message assistant">
+              <div class="message-bubble">
+                <p>Bienvenue dans ton espace d'entraînement CAP Pâtissier.AI ! 🧁 Je suis là pour t'accompagner pas à pas dans l'apprentissage des gestes professionnels. Quelle étape du programme étudions-nous aujourd'hui ?</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quick-replies" id="quickReplies">
+            <!-- Rempli dynamiquement -->
+          </div>
+
+          <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Posez votre question de pâtisserie ici..." aria-label="Message au coach">
+            <button id="sendChatBtn">Envoyer</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab Content: Glossaire -->
+      <section class="tab-content" id="tab-glossaire">
+        <div class="welcome-banner">
+          <h2>📖 Glossaire Technique Officiel</h2>
+          <p>Maîtrisez le vocabulaire professionnel exigé par le jury d'examen.</p>
+        </div>
+        
+        <div class="search-bar-container">
+          <input type="text" id="glossarySearch" placeholder="Rechercher un terme technique (ex: foncer, blanchir)...">
+        </div>
+
+        <div class="glossary-grid" id="glossaryGrid">
+          <!-- Termes techniques générés par JS -->
+        </div>
+      </section>
+
+      <!-- Tab Content: Privacy -->
+      <section class="tab-content" id="tab-privacy">
+        <div class="privacy-container card">
+          <h2>🛡️ Vie Privée & Mentions Légales</h2>
+          <p><strong>Zéro Compte obligatoire, Sécurité Maximale.</strong></p>
+          <p>Conformément aux principes de minimisation du RGPD, nous ne stockons aucune de vos données personnelles sur un serveur.</p>
+          <ul>
+            <li><strong>Progression :</strong> Sauvegardée exclusivement dans la mémoire de votre navigateur (localStorage). Elle ne quitte jamais votre appareil.</li>
+            <li><strong>Conversations :</strong> Les messages envoyés au coach sont traités de façon éphémère par l'API pour générer les réponses pédagogiques. Aucun historique de chat n'est persisté sur nos serveurs.</li>
+            <li><strong>Clé API :</strong> Sécurisée côté backend, aucune clé de service n'est exposée sur le client.</li>
+          </ul>
+          <p>Les conseils prodigués par le coach sont à but pédagogique et indicatif pour l'examen du CAP Pâtissier. Ils ne se substituent pas à des normes d'hygiène professionnelles réelles ou à des conseils médicaux/nutritionnels.</p>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Onboarding Modal -->
+  <div class="modal-overlay" id="onboardingModal">
+    <div class="modal-content">
+      <h2>🧁 Configurez votre profil d'apprentissage</h2>
+      <p>Ajustez vos options pour que le coach CAP Pâtissier.AI adapte parfaitement ses réponses à votre cuisine.</p>
+      
+      <form id="onboardingForm">
+        <div class="form-group">
+          <label for="inputNiveau">Votre niveau actuel :</label>
+          <select id="inputNiveau" required>
+            <option value="débutant" selected>Débutant complet (pas de bases)</option>
+            <option value="intermédiaire">Intermédiaire (fait déjà quelques gâteaux)</option>
+            <option value="avancé">Avancé (maîtrise déjà des techniques)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="inputFour">Votre type de four :</label>
+          <select id="inputFour" required>
+            <option value="électrique" selected>Four électrique classique (chaleur statique)</option>
+            <option value="chaleur_tournante">Four électrique à chaleur tournante</option>
+            <option value="gaz">Four à gaz</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Possédez-vous un robot pâtissier ?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="inputRobot" value="true"> Oui (ex: KitchenAid, Kenwood)</label>
+            <label><input type="radio" name="inputRobot" value="false" checked> Non (travail au fouet manuel)</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputSession">Session du CAP visée :</label>
+          <input type="text" id="inputSession" placeholder="Ex: Juin 2027" required>
+        </div>
+
+        <button type="submit" class="primary-btn">Accéder à mon espace d'étude</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Premium Payment Modal -->
+  <div class="modal-overlay" id="premiumCohortModal">
+    <div class="modal-content">
+      <h2>🔒 Débloquer le reste de ma formation</h2>
+      <p>Vous avez accédé aux 5 premières semaines gratuites. Pour débloquer l'intégralité des <strong>52 semaines</strong> de cours, les quiz avancés et le **Bloc 8 Business**, choisissez votre formule de paiement :</p>
+      
+      <div class="payment-options-container" style="display:flex; flex-direction:column; gap:16px; margin:24px 0;">
+        <!-- Option 1: One-time payment -->
+        <div class="payment-card option-card" onclick="simulatePayment(399)" style="border: 2px solid var(--color-primary); padding:16px; border-radius:12px; cursor:pointer; background-color:#fffdfc; transition:var(--transition-smooth);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h4 style="font-size:1.1rem; font-weight:700;">💳 Paiement Unique</h4>
+            <span style="font-size:1.25rem; font-weight:700; color:var(--text-main);">399 €</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Accès complet à vie au programme, sans frais cachés.</p>
+        </div>
+
+        <!-- Option 2: Installments -->
+        <div class="payment-card option-card" onclick="simulatePayment(500)" style="border: 1px solid var(--border-light); padding:16px; border-radius:12px; cursor:pointer; background-color:#fffdfc; transition:var(--transition-smooth);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h4 style="font-size:1.1rem; font-weight:700;">📅 Paiement Mensuel</h4>
+            <span style="font-size:1.25rem; font-weight:700; color:var(--text-main);">500 € total</span>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Payez en 5 mensualités de 100 € par mois.</p>
+        </div>
+      </div>
+
+      <button class="reset-data-btn" onclick="closePremiumModal()">Retourner sur mon espace gratuit</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

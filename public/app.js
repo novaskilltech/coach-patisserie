@@ -167,6 +167,26 @@ function saveStateToStorage() {
   localStorage.setItem("is_premium", JSON.stringify(state.is_premium));
 }
 
+// Sauvegarder l'historique de chat d'une semaine dans localStorage
+function saveChatHistory(weekNum) {
+  const key = `chat_history_week_${weekNum}`;
+  localStorage.setItem(key, JSON.stringify(state.historique_messages));
+}
+
+// Charger l'historique de chat d'une semaine depuis localStorage
+function loadChatHistory(weekNum) {
+  const key = `chat_history_week_${weekNum}`;
+  const saved = localStorage.getItem(key);
+  if (saved) {
+    try {
+      return JSON.parse(saved);
+    } catch (e) {
+      return null;
+    }
+  }
+  return null;
+}
+
 // Charger le programme JSON
 async function fetchCurriculumData() {
   try {
@@ -286,17 +306,33 @@ function selectWeek(weekNum) {
   state.semaine_active = weekNum;
   switchTab("chat");
   
-  // Vider l'historique de chat pour repartir sur le cours de la semaine
-  state.historique_messages = [];
   const chatMessages = document.getElementById("chatMessages");
-  chatMessages.innerHTML = `
-    <div class="message assistant">
-      <div class="message-bubble">
-        <p>Prêt pour le programme de la <strong>Semaine ${weekNum}</strong> ? 🧁 Dis-moi par quoi tu veux commencer (Théorie, Base technique, Recette pas à pas, ou Quiz d'évaluation) !</p>
+  const savedHistory = loadChatHistory(weekNum);
+  
+  if (savedHistory && savedHistory.length > 0) {
+    // Restaurer l'historique existant
+    state.historique_messages = savedHistory;
+    chatMessages.innerHTML = "";
+    
+    // Ré-afficher tous les messages sauvegardés
+    savedHistory.forEach(msg => {
+      const role = msg.role === "model" ? "assistant" : "user";
+      appendMessage(role, msg.text);
+    });
+    
+    // Ajouter un message de reprise
+    appendMessage("assistant", "Content de te revoir ! 👋 On reprend là où tu t'es arrêté en **Semaine " + weekNum + "**. Pose-moi ta prochaine question quand tu es prêt.");
+  } else {
+    // Première visite de cette semaine
+    state.historique_messages = [];
+    chatMessages.innerHTML = `
+      <div class="message assistant">
+        <div class="message-bubble">
+          <p>Prêt pour le programme de la <strong>Semaine ${weekNum}</strong> ? 🧁 Dis-moi par quoi tu veux commencer (Théorie, Base technique, Recette pas à pas, ou Quiz d'évaluation) !</p>
+        </div>
       </div>
-    </div>
-  `;
-
+    `;
+  }
 }
 
 // Rendu du glossaire
@@ -344,7 +380,7 @@ async function sendMessageToCoach(textOverride) {
         message: messageText,
         semaine_active: state.semaine_active,
         contexte_eleve: state.contexte_eleve,
-        historique_messages: state.historique_messages
+        historique_messages: state.historique_messages.slice(-6)
       })
     });
 
@@ -359,11 +395,9 @@ async function sendMessageToCoach(textOverride) {
     // Mettre à jour l'historique
     state.historique_messages.push({ role: "user", text: messageText });
     state.historique_messages.push({ role: "model", text: data.response_text });
-    // Limiter l'historique à 6 messages pour économiser de la bande passante
-    if (state.historique_messages.length > 6) {
-      state.historique_messages.shift();
-      state.historique_messages.shift();
-    }
+    
+    // Sauvegarder l'historique complet dans localStorage
+    saveChatHistory(state.semaine_active);
     
 
 

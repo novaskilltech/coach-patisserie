@@ -784,6 +784,25 @@
     </div>
   </div>
 
+  <!-- Floating Audio Player -->
+  <div id="audioPlayerWidget" class="floating-audio-player">
+    <button id="audioPlayPauseBtn" class="audio-toggle-btn" aria-label="Écouter le podcast de présentation">
+      <span class="play-icon">▶</span>
+      <span class="pause-icon" style="display: none;">⏸</span>
+    </button>
+    <div class="audio-info">
+      <span class="audio-title">Présentation audio</span>
+      <span class="audio-status">Cliquez pour écouter</span>
+    </div>
+    <div class="audio-wave" id="audioWave">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <audio id="introAudio" src="presentation.wav" preload="auto"></audio>
+  </div>
+
   <script src="app.js"></script>
 </body>
 </html>

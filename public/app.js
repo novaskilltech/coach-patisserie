@@ -430,3 +430,54 @@ function simulatePayment(amount) {
   closePremiumModal();
   updateDashboardUI();
 }
+
+// Initialisation de la lecture audio au premier clic utilisateur (Autoplay bypass)
+window.addEventListener("DOMContentLoaded", () => {
+  const introAudio = document.getElementById("introAudio");
+  const playPauseBtn = document.getElementById("audioPlayPauseBtn");
+  const playIcon = playPauseBtn.querySelector(".play-icon");
+  const pauseIcon = playPauseBtn.querySelector(".pause-icon");
+  const audioStatus = document.querySelector(".audio-status");
+  const audioWave = document.getElementById("audioWave");
+  const playerWidget = document.getElementById("audioPlayerWidget");
+  let hasPlayed = false;
+
+  function playAudio() {
+    introAudio.play().then(() => {
+      hasPlayed = true;
+      playIcon.style.display = "none";
+      pauseIcon.style.display = "inline";
+      audioStatus.innerText = "Lecture en cours";
+      audioWave.classList.add("playing");
+      playerWidget.classList.add("active");
+    }).catch(err => {
+      console.log("Autoplay bloqué ou échoué:", err);
+    });
+  }
+
+  function pauseAudio() {
+    introAudio.pause();
+    playIcon.style.display = "inline";
+    pauseIcon.style.display = "none";
+    audioStatus.innerText = "En pause";
+    audioWave.classList.remove("playing");
+  }
+
+  // Écouter le clic sur le bouton lui-même
+  playPauseBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // Éviter de déclencher le listener global
+    if (introAudio.paused) {
+      playAudio();
+    } else {
+      pauseAudio();
+    }
+  });
+
+  // Déclencher au premier clic n'importe où sur le document pour simuler l'autoplay
+  document.addEventListener("click", () => {
+    if (!hasPlayed) {
+      playAudio();
+    }
+  }, { once: true });
+});
+

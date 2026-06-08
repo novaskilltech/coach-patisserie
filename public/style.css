@@ -183,13 +183,27 @@ p {
   font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 10px;
 }
 
 .logo span {
   background: linear-gradient(120deg, #ffa6a0, #ffdac1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.logo-icon-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 8px;
 }
 
 /* Section Hero */

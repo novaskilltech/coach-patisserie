@@ -442,6 +442,48 @@ window.addEventListener("DOMContentLoaded", () => {
   const playerWidget = document.getElementById("audioPlayerWidget");
   let hasPlayed = false;
 
+  // Gestion des bulles de dialogue synchronisées avec l'audio
+  const bubble = document.getElementById("chefSpeechBubble");
+  const bubbleSpeaker = bubble.querySelector(".speech-speaker");
+  const bubbleText = bubble.querySelector(".speech-text");
+
+  const dialogues = [
+    { start: 0, end: 5.5, speaker: "Julie 👩‍🍳", text: "Saviez-vous que 60% des candidats libres au CAP abandonnent avant l'examen ?" },
+    { start: 5.5, end: 10.0, speaker: "Thomas (Apprenti) 👨‍🍳", text: "Attends... 60 % ? C'est énorme ! Pourquoi tant de découragement ?" },
+    { start: 10.0, end: 15.5, speaker: "Julie 👩‍🍳", text: "Principalement à cause du manque de structure et de l'isolement dans leur cuisine." },
+    { start: 15.5, end: 25.5, speaker: "Thomas (Apprenti) 👨‍🍳", text: "Mais CAP Pâtissier.AI change la donne avec une méthode structurée pas à pas !" },
+    { start: 25.5, end: 32.5, speaker: "Julie 👩‍🍳", text: "5 semaines gratuites pour s'organiser, apprendre les bases et les techniques pro." },
+    { start: 32.5, end: 45.0, speaker: "Thomas (Apprenti) 👨‍🍳", text: "Puis le reste du programme de 52 semaines pour réviser et simuler l'examen blanc !" }
+  ];
+
+  introAudio.addEventListener("timeupdate", () => {
+    const currentTime = introAudio.currentTime;
+    let currentDialogue = dialogues.find(d => currentTime >= d.start && currentTime < d.end);
+
+    if (currentDialogue) {
+      bubble.style.opacity = "1";
+      bubble.style.transform = "translateY(0) scale(1)";
+      bubbleSpeaker.innerText = currentDialogue.speaker;
+      bubbleText.innerText = currentDialogue.text;
+
+      if (currentDialogue.speaker.includes("Thomas")) {
+        bubble.classList.add("thomas-talking");
+        bubble.classList.remove("julie-talking");
+      } else {
+        bubble.classList.add("julie-talking");
+        bubble.classList.remove("thomas-talking");
+      }
+    } else {
+      bubble.style.opacity = "0";
+      bubble.style.transform = "translateY(10px) scale(0.95)";
+    }
+  });
+
+  introAudio.addEventListener("ended", () => {
+    bubble.style.opacity = "0";
+    pauseAudio();
+  });
+
   function playAudio() {
     introAudio.play().then(() => {
       hasPlayed = true;

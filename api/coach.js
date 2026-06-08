@@ -62,10 +62,9 @@ ${coursSemaine}
 === RÈGLE CRITIQUE DE FORMAT ===
 Tu dois répondre en français au format JSON structuré correspondant à ce schéma :
 {
-  "response_text": "Ta réponse formatée en Markdown, en français simple, encourageant et socratique...",
-  "suggestions_rapides": ["Suggestion de question courte 1", "Suggestion de question courte 2", "Suggestion de question courte 3"]
+  "response_text": "Ta réponse formatée en Markdown, en français simple, encourageant et pédagogique..."
 }
-Les suggestions rapides doivent être des questions courtes que l'élève pourrait te poser suite à ta réponse pour poursuivre l'apprentissage (max 50 caractères par suggestion). Reste bien dans le rôle.
+Reste bien dans le rôle.
 `;
 
     const messages = [
@@ -110,8 +109,7 @@ Les suggestions rapides doivent être des questions courtes que l'élève pourra
   } catch (err) {
     console.error("Vercel Function Error:", err);
     res.status(500).json({
-      response_text: "Désolé, je rencontre une petite défaillance technique pour me connecter à mes fourneaux. Réessaie dans quelques instants !",
-      suggestions_rapides: ["Réessayer", "D'accord"]
+      response_text: "Désolé, je rencontre une petite défaillance technique pour me connecter à mes fourneaux. Réessaie dans quelques instants !"
     });
   }
 };

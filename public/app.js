@@ -296,13 +296,7 @@ function selectWeek(weekNum) {
       </div>
     </div>
   `;
-  
-  // Charger les suggestions initiales
-  renderSuggestions([
-    "Explique-moi la théorie",
-    "Je veux la recette pas-à-pas",
-    "Lance le quiz d'évaluation"
-  ]);
+
 }
 
 // Rendu du glossaire
@@ -320,20 +314,7 @@ function renderGlossaire(list) {
   });
 }
 
-// Rendu des suggestions
-function renderSuggestions(suggestions) {
-  const container = document.getElementById("quickReplies");
-  container.innerHTML = "";
-  suggestions.forEach(sug => {
-    const btn = document.createElement("button");
-    btn.className = "quick-reply-btn";
-    btn.innerText = sug;
-    btn.addEventListener("click", () => {
-      sendMessageToCoach(sug);
-    });
-    container.appendChild(btn);
-  });
-}
+
 
 // Envoyer un message au coach via Firebase Cloud Function
 async function sendMessageToCoach(textOverride) {
@@ -384,8 +365,7 @@ async function sendMessageToCoach(textOverride) {
       state.historique_messages.shift();
     }
     
-    // Charger les suggestions rapides
-    renderSuggestions(data.suggestions_rapides || ["D'accord", "Une autre question", "Fiche recette"]);
+
 
   } catch (error) {
     console.error("API Call error:", error);

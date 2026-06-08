@@ -39,6 +39,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // Fonctions de transition Landing -> App
 function startFreeTrial() {
+  // Fermer le lecteur audio pour ne pas gêner le formulaire (surtout sur mobile)
+  const audioPlayer = document.getElementById("audioPlayerWidget");
+  const introAudio = document.getElementById("introAudio");
+  if (audioPlayer) audioPlayer.style.display = "none";
+  if (introAudio && !introAudio.paused) introAudio.pause();
+
   document.getElementById("onboardingModal").classList.add("active");
 }
 

@@ -12,6 +12,10 @@
         "function": "coachApi"
       },
       {
+        "source": "/api/programme-sessions",
+        "function": "programmeSessionsApi"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

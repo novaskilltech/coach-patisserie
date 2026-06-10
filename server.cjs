@@ -24,8 +24,58 @@ const MIME_TYPES = {
   ".json": "application/json",
   ".png": "image/png",
   ".jpg": "image/jpeg",
+  ".svg": "image/svg+xml",
   ".ico": "image/x-icon"
 };
+
+function normalizeSessionTitle(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .replace(/[“”]/g, "\"")
+    .trim();
+}
+
+function extractSessionsFromWeekMarkdown(content) {
+  const lines = content.split(/\r?\n/);
+  const sessions = [];
+  const seen = new Set();
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const match = lines[index].match(/S\s*([1-5])\s*[\u2013\u2014-]\s*(.+)$/);
+    if (!match) continue;
+
+    const num = Number(match[1]);
+    if (seen.has(num)) continue;
+    seen.add(num);
+
+    let title = normalizeSessionTitle(match[2]);
+    let next = index + 1;
+    while (
+      title.length < 58 &&
+      next < lines.length &&
+      lines[next].trim() &&
+      !/Objectifs|But|D[ée]roul[ée]|Points|Ce que|R[oô]le/i.test(lines[next]) &&
+      !/S\s*[1-5]\s*[\u2013\u2014-]/.test(lines[next])
+    ) {
+      title = normalizeSessionTitle(`${title} ${lines[next]}`);
+      next += 1;
+    }
+
+    sessions.push({ num, label: `S${num}`, titre: title });
+  }
+
+  return sessions.sort((a, b) => a.num - b.num);
+}
+
+function buildProgrammeSessionsIndex() {
+  const sessions = {};
+  for (let week = 1; week <= 52; week += 1) {
+    const filePath = path.join(FUNCTIONS_DIR, "programme_cap", `semaine_${week}.md`);
+    if (!fs.existsSync(filePath)) continue;
+    sessions[week] = extractSessionsFromWeekMarkdown(fs.readFileSync(filePath, "utf8"));
+  }
+  return sessions;
+}
 
 const server = http.createServer(async (req, res) => {
   // Gérer CORS
@@ -39,6 +89,12 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  if (req.url === "/api/programme-sessions" && req.method === "GET") {
+    res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+    res.end(JSON.stringify({ sessions: buildProgrammeSessionsIndex() }));
+    return;
+  }
+
   // Router API Coach
   if (req.url === "/api/coach" && req.method === "POST") {
     let body = "";
@@ -48,7 +104,7 @@ const server = http.createServer(async (req, res) => {
 
     req.on("end", async () => {
       try {
-        const { message, semaine_active, contexte_eleve, historique_messages } = JSON.parse(body);
+        const { message, semaine_active, seance_active, seance_active_detail, contexte_eleve, historique_messages } = JSON.parse(body);
 
         if (!message || !semaine_active || !contexte_eleve) {
           res.writeHead(400, { "Content-Type": "application/json" });
@@ -82,6 +138,12 @@ ${basePrompt}
 === COURS DE LA SEMAINE ACTIVE (Semaine ${semaine_active}) ===
 Utilise ce cours comme référence thématique pour guider l'élève :
 ${coursSemaine}
+
+=== SEANCE ACTIVE ===
+- Position exacte : Semaine ${semaine_active} - S${seance_active || 1}
+- Titre de la seance : ${seance_active_detail?.titre || "Seance non precisee"}
+- Regle : commence tes reponses importantes en rappelant "Semaine ${semaine_active} - S${seance_active || 1}".
+- Ne saute pas vers S2, S3, S4 ou S5 sauf si l'eleve le demande explicitement.
 
 === CONTEXTE ACTUEL DE L'ÉLÈVE ===
 - Niveau : ${contexte_eleve.niveau}

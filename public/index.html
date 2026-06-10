@@ -615,8 +615,35 @@
         <button class="nav-btn" data-tab="chat">
           <span class="btn-icon">💬</span> Mon Coach Personnel
         </button>
+        <button class="nav-btn" data-tab="fiches">
+          <span class="btn-icon">🧾</span> Fiches Techniques
+        </button>
+        <button class="nav-btn" data-tab="notes">
+          <span class="btn-icon">📝</span> Carnet de notes
+        </button>
+        <button class="nav-btn" data-tab="recherche">
+          <span class="btn-icon">🔎</span> Recherche globale
+        </button>
+        <button class="nav-btn" data-tab="examen">
+          <span class="btn-icon">⏱️</span> Examen blanc
+        </button>
+        <button class="nav-btn" data-tab="depannage">
+          <span class="btn-icon">🧯</span> Erreurs fréquentes
+        </button>
         <button class="nav-btn" data-tab="glossaire">
           <span class="btn-icon">📖</span> Glossaire Technique
+        </button>
+        <button class="nav-btn" data-tab="apropos">
+          <span class="btn-icon">&#8505;&#65039;</span> A propos
+        </button>
+        <button class="nav-btn" data-tab="copyright">
+          <span class="btn-icon">&copy;</span> Copyright
+        </button>
+        <button class="nav-btn" data-tab="cdg">
+          <span class="btn-icon">&#128196;</span> CDG
+        </button>
+        <button class="nav-btn" data-tab="contact">
+          <span class="btn-icon">&#9993;&#65039;</span> Contact
         </button>
         <button class="nav-btn" data-tab="privacy">
           <span class="btn-icon">🛡️</span> Vie Privée
@@ -633,6 +660,10 @@
       <header class="main-header">
         <button class="menu-toggle" id="menuToggle">☰</button>
         <div class="header-user-status">
+          <input type="search" id="globalSearchInput" class="global-search-input" placeholder="Recherche globale...">
+          <span class="supabase-status" id="supabaseStatus">Local</span>
+          <button class="supabase-header-btn" id="supabaseAuthBtn" type="button">Connexion</button>
+          <button class="supabase-header-btn" id="supabaseSyncBtn" type="button">Synchroniser</button>
           <span class="badge-accent" id="userOvenBadge">Four électrique ⚡</span>
           <span class="progress-percent" id="globalProgressPercent">0% complété</span>
         </div>
@@ -645,9 +676,30 @@
             <h2>Mon Parcours de Reconversion</h2>
             <p>Suivez le programme officiel du CAP Pâtissier semaine après semaine.</p>
           </div>
-          <div id="premiumStatusContainer">
-            <span class="badge-accent" style="background-color: var(--color-primary); color: var(--text-main);">Mode Essai (S1-S5) 🎁</span>
+          <div class="dashboard-actions">
+            <div id="premiumStatusContainer">
+              <span class="badge-accent" style="background-color: var(--color-primary); color: var(--text-main);">Mode Essai (S1-S5) 🎁</span>
+            </div>
+            <button class="export-global-btn" id="exportGlobalDataBtn" type="button">Exporter mes données</button>
+            <button class="export-global-btn" id="importGlobalDataBtn" type="button">Importer</button>
+            <input type="file" id="importGlobalDataInput" accept="application/json" style="display:none;">
           </div>
+        </div>
+
+        <div class="today-panel" id="todayPanel">
+          <!-- Synthèse du jour générée par JS -->
+        </div>
+
+        <div class="dashboard-tools-grid">
+          <section class="dashboard-tool-card" id="revisionPlannerPanel">
+            <!-- Planning généré par JS -->
+          </section>
+          <section class="dashboard-tool-card" id="weeklyChecklistPanel">
+            <!-- Checklist générée par JS -->
+          </section>
+          <section class="dashboard-tool-card" id="weeklyQuizPanel">
+            <!-- Quiz généré par JS -->
+          </section>
         </div>
 
         <div class="curriculum-container" id="curriculumContainer">
@@ -661,6 +713,10 @@
           <div class="chat-header">
             <h3>💬 Conversation avec Coach IA</h3>
             <p>Posez vos questions sur la théorie, les pâtes ou vos techniques de préparation.</p>
+          </div>
+
+          <div class="chat-session-panel" id="chatSessionPanel">
+            <!-- Semaine et seances generees par JS -->
           </div>
 
           <div class="chat-messages" id="chatMessages">
@@ -680,6 +736,147 @@
         </div>
       </section>
 
+      <!-- Tab Content: Fiches Techniques -->
+      <section class="tab-content" id="tab-fiches">
+        <div class="welcome-banner">
+          <h2>🧾 Fiches Techniques CAP</h2>
+          <p>Retrouvez les bases, gestes et recettes de référence avec les points de contrôle attendus à l'examen.</p>
+        </div>
+
+        <div class="search-bar-container">
+          <input type="text" id="technicalSheetSearch" placeholder="Rechercher une fiche (ex: pâte à choux, crème pâtissière, fonçage)...">
+        </div>
+
+        <div class="technical-sheets-grid" id="technicalSheetsGrid">
+          <!-- Fiches techniques générées par JS -->
+        </div>
+      </section>
+
+      <!-- Tab Content: Carnet de notes -->
+      <section class="tab-content" id="tab-notes">
+        <div class="welcome-banner notes-banner">
+          <div>
+            <h2>📝 Carnet de notes d'apprenti</h2>
+            <p>Notez vos essais, erreurs, astuces et questions au fil des semaines. Les notes restent sauvegardées dans votre navigateur.</p>
+          </div>
+          <button class="export-notes-btn" id="exportNotesBtn" type="button">Exporter mes notes</button>
+        </div>
+
+        <div class="notes-layout">
+          <form class="note-editor" id="noteForm">
+            <input type="hidden" id="noteEditingId">
+            <input type="hidden" id="noteSheetTitleInput">
+            <div class="note-editor-header">
+              <h3>Nouvelle note</h3>
+              <button class="secondary-btn-outline" id="cancelNoteEditBtn" type="button" style="display:none;">Annuler</button>
+            </div>
+            <div class="note-linked-sheet" id="noteLinkedSheet" style="display:none;"></div>
+
+            <div class="note-form-grid">
+              <label>
+                <span>Semaine</span>
+                <select id="noteWeekSelect"></select>
+              </label>
+              <label>
+                <span>Catégorie</span>
+                <select id="noteCategorySelect">
+                  <option value="Théorie">Théorie</option>
+                  <option value="Recette">Recette</option>
+                  <option value="Erreur à corriger">Erreur à corriger</option>
+                  <option value="Astuce">Astuce</option>
+                  <option value="Question au coach">Question au coach</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              <span>Titre</span>
+              <input type="text" id="noteTitleInput" placeholder="Ex: ma pâte à choux retombe après cuisson" required>
+            </label>
+
+            <label>
+              <span>Contenu</span>
+              <textarea id="noteContentInput" rows="8" placeholder="Ce que j'ai testé, ce qui a marché, ce que je dois refaire..." required></textarea>
+            </label>
+
+            <button class="cta-primary-btn" type="submit">Enregistrer la note</button>
+          </form>
+
+          <div class="notes-panel">
+            <div class="notes-filters">
+              <input type="text" id="notesSearchInput" placeholder="Rechercher dans mes notes...">
+              <select id="notesWeekFilter"></select>
+              <select id="notesCategoryFilter">
+                <option value="all">Toutes les catégories</option>
+                <option value="Théorie">Théorie</option>
+                <option value="Recette">Recette</option>
+                <option value="Erreur à corriger">Erreur à corriger</option>
+                <option value="Astuce">Astuce</option>
+                <option value="Question au coach">Question au coach</option>
+              </select>
+            </div>
+            <div class="notes-list" id="notesList">
+              <!-- Notes générées par JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab Content: Recherche globale -->
+      <section class="tab-content" id="tab-recherche">
+        <div class="welcome-banner">
+          <h2>🔎 Recherche globale</h2>
+          <p>Cherchez dans les semaines, fiches techniques, glossaire et notes personnelles.</p>
+        </div>
+        <div class="search-bar-container">
+          <input type="text" id="globalSearchPageInput" placeholder="Rechercher partout (ex: crème, fonçage, erreur, semaine 12)...">
+        </div>
+        <div class="global-search-results" id="globalSearchResults">
+          <!-- Résultats générés par JS -->
+        </div>
+      </section>
+
+      <!-- Tab Content: Examen blanc -->
+      <section class="tab-content" id="tab-examen">
+        <div class="welcome-banner">
+          <h2>⏱️ Mode examen blanc</h2>
+          <p>Simulez une épreuve pratique : chronomètre, productions, organisation et auto-évaluation des gestes.</p>
+        </div>
+        <div class="exam-layout">
+          <section class="exam-card">
+            <h3>Chronomètre</h3>
+            <div class="exam-timer" id="examTimerDisplay">00:00:00</div>
+            <div class="exam-actions">
+              <button type="button" id="examStartBtn">Démarrer</button>
+              <button type="button" id="examPauseBtn">Pause</button>
+              <button type="button" id="examResetBtn">Réinitialiser</button>
+            </div>
+          </section>
+          <section class="exam-card">
+            <h3>Productions à réaliser</h3>
+            <div id="examProductionsList"></div>
+          </section>
+          <section class="exam-card">
+            <h3>Auto-évaluation par geste</h3>
+            <div id="gestureEvaluationGrid"></div>
+          </section>
+        </div>
+      </section>
+
+      <!-- Tab Content: Dépannage -->
+      <section class="tab-content" id="tab-depannage">
+        <div class="welcome-banner">
+          <h2>🧯 Tableau des erreurs fréquentes</h2>
+          <p>Retrouvez rapidement les causes probables et les corrections à appliquer.</p>
+        </div>
+        <div class="search-bar-container">
+          <input type="text" id="errorSearchInput" placeholder="Rechercher une erreur (ex: pâte retombe, crème grainée, fond détrempé)...">
+        </div>
+        <div class="error-grid" id="errorGrid">
+          <!-- Erreurs générées par JS -->
+        </div>
+      </section>
+
       <!-- Tab Content: Glossaire -->
       <section class="tab-content" id="tab-glossaire">
         <div class="welcome-banner">
@@ -693,6 +890,66 @@
 
         <div class="glossary-grid" id="glossaryGrid">
           <!-- Termes techniques générés par JS -->
+        </div>
+      </section>
+
+      <!-- Tab Content: A propos -->
+      <section class="tab-content" id="tab-apropos">
+        <div class="privacy-container card">
+          <h2>&#8505;&#65039; A propos</h2>
+          <p><strong>CAP P&acirc;tissier.AI</strong> est un espace d'apprentissage con&ccedil;u pour aider les apprentis et candidats libres &agrave; structurer leur pr&eacute;paration au CAP P&acirc;tissier.</p>
+          <p>L'application regroupe un tableau de bord de progression, des fiches techniques, un glossaire professionnel, un carnet de notes, des outils d'auto-&eacute;valuation, un mode examen blanc et un coach p&eacute;dagogique.</p>
+          <p>Son objectif est de rendre le travail r&eacute;gulier plus simple : savoir quoi r&eacute;viser, garder trace de ses essais, identifier ses erreurs et reprendre rapidement l&agrave; o&ugrave; l'on s'est arr&ecirc;t&eacute;.</p>
+          <ul>
+            <li><strong>Public vis&eacute; :</strong> apprentis, adultes en reconversion et candidats libres au CAP P&acirc;tissier.</li>
+            <li><strong>Approche :</strong> apprentissage progressif, pratique r&eacute;guli&egrave;re et auto-&eacute;valuation des gestes.</li>
+            <li><strong>Donn&eacute;es :</strong> notes et progression enregistr&eacute;es localement dans le navigateur de l'utilisateur.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Tab Content: Copyright -->
+      <section class="tab-content" id="tab-copyright">
+        <div class="privacy-container card">
+          <h2>&copy; Copyright</h2>
+          <p><strong>&copy; novaskilltech 2026. Tous droits r&eacute;serv&eacute;s.</strong></p>
+          <p>Les contenus, textes, structures p&eacute;dagogiques, fiches, parcours, illustrations, interfaces, logos et &eacute;l&eacute;ments graphiques de cette application sont prot&eacute;g&eacute;s par le droit d'auteur.</p>
+          <p>L'utilisation est autoris&eacute;e pour un apprentissage personnel. Toute reproduction, redistribution, revente, extraction massive ou publication externe sans autorisation &eacute;crite est interdite.</p>
+          <ul>
+            <li><strong>Usage autoris&eacute; :</strong> consultation personnelle, impression de fiches pour son propre entra&icirc;nement, sauvegarde de ses notes.</li>
+            <li><strong>Usage interdit :</strong> partage public des contenus, copie commerciale, int&eacute;gration dans une autre formation sans accord.</li>
+            <li><strong>Contact droits :</strong> <a href="mailto:novaskilltech@gmail.com">novaskilltech@gmail.com</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Tab Content: CDG -->
+      <section class="tab-content" id="tab-cdg">
+        <div class="privacy-container card">
+          <h2>&#128196; Conditions g&eacute;n&eacute;rales d'utilisation</h2>
+          <p>Les pr&eacute;sentes conditions g&eacute;n&eacute;rales d'utilisation encadrent l'acc&egrave;s et l'usage de CAP P&acirc;tissier.AI.</p>
+          <ul>
+            <li><strong>Finalit&eacute; :</strong> l'application fournit un accompagnement p&eacute;dagogique et des outils de r&eacute;vision pour la pr&eacute;paration au CAP P&acirc;tissier.</li>
+            <li><strong>Responsabilit&eacute; utilisateur :</strong> l'utilisateur reste responsable de ses pratiques en cuisine, du respect des r&egrave;gles d'hygi&egrave;ne, de s&eacute;curit&eacute; et de l'interpr&eacute;tation des conseils.</li>
+            <li><strong>R&eacute;sultat d'examen :</strong> l'application ne garantit pas l'obtention du dipl&ocirc;me ; elle constitue un support de travail compl&eacute;mentaire.</li>
+            <li><strong>Donn&eacute;es locales :</strong> la progression, les notes et pr&eacute;f&eacute;rences sont principalement stock&eacute;es dans le navigateur. L'utilisateur doit exporter une sauvegarde s'il change d'appareil ou de navigateur.</li>
+            <li><strong>Disponibilit&eacute; :</strong> des &eacute;volutions, corrections ou interruptions temporaires peuvent &ecirc;tre effectu&eacute;es pour am&eacute;liorer le service.</li>
+            <li><strong>Contact :</strong> toute question peut &ecirc;tre envoy&eacute;e &agrave; <a href="mailto:novaskilltech@gmail.com">novaskilltech@gmail.com</a>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Tab Content: Contact -->
+      <section class="tab-content" id="tab-contact">
+        <div class="privacy-container card">
+          <h2>&#9993;&#65039; Contact</h2>
+          <p>Pour une question, une demande de correction, un signalement de bug ou une demande li&eacute;e aux droits d'auteur, contactez NOVASKILLTECH par email.</p>
+          <p><strong>Email :</strong> <a href="mailto:novaskilltech@gmail.com">novaskilltech@gmail.com</a></p>
+          <ul>
+            <li><strong>Support :</strong> probl&egrave;me d'utilisation, sauvegarde, impression ou affichage.</li>
+            <li><strong>Contenu :</strong> suggestion de fiche technique, correction d'une notion ou demande d'am&eacute;lioration.</li>
+            <li><strong>L&eacute;gal :</strong> copyright, conditions d'utilisation, confidentialit&eacute; ou demande de contact professionnel.</li>
+          </ul>
         </div>
       </section>
 
@@ -806,6 +1063,8 @@
     <audio id="introAudio" src="presentation.wav" preload="auto"></audio>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

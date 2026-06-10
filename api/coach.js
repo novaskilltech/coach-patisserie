@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { message, semaine_active, contexte_eleve, historique_messages } = req.body;
+    const { message, semaine_active, seance_active, seance_active_detail, contexte_eleve, historique_messages } = req.body;
 
     if (!message || !semaine_active || !contexte_eleve) {
       res.status(400).json({ error: "Missing required parameters" });
@@ -52,6 +52,12 @@ ${basePrompt}
 === COURS DE LA SEMAINE ACTIVE (Semaine ${semaine_active}) ===
 Utilise ce cours comme référence thématique pour guider l'élève :
 ${coursSemaine}
+
+=== SEANCE ACTIVE ===
+- Position exacte : Semaine ${semaine_active} - S${seance_active || 1}
+- Titre de la seance : ${seance_active_detail?.titre || "Seance non precisee"}
+- Regle : commence tes reponses importantes en rappelant "Semaine ${semaine_active} - S${seance_active || 1}".
+- Ne saute pas vers S2, S3, S4 ou S5 sauf si l'eleve le demande explicitement.
 
 === CONTEXTE ACTUEL DE L'ÉLÈVE ===
 - Niveau : ${contexte_eleve.niveau}

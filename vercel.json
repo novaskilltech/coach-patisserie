@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/api/coach", "destination": "/api/coach" },
+    { "source": "/api/programme-sessions", "destination": "/api/programme-sessions" },
     { "source": "/(.*)", "destination": "/public/$1" }
   ]
 }

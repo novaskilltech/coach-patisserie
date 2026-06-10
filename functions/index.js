@@ -6,6 +6,75 @@ const path = require("path");
 
 admin.initializeApp();
 
+function normalizeSessionTitle(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .replace(/[“”]/g, "\"")
+    .trim();
+}
+
+function extractSessionsFromWeekMarkdown(content) {
+  const lines = content.split(/\r?\n/);
+  const sessions = [];
+  const seen = new Set();
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const match = lines[index].match(/S\s*([1-5])\s*[\u2013\u2014-]\s*(.+)$/);
+    if (!match) continue;
+
+    const num = Number(match[1]);
+    if (seen.has(num)) continue;
+    seen.add(num);
+
+    let title = normalizeSessionTitle(match[2]);
+    let next = index + 1;
+    while (
+      title.length < 58 &&
+      next < lines.length &&
+      lines[next].trim() &&
+      !/Objectifs|But|D[ée]roul[ée]|Points|Ce que|R[oô]le/i.test(lines[next]) &&
+      !/S\s*[1-5]\s*[\u2013\u2014-]/.test(lines[next])
+    ) {
+      title = normalizeSessionTitle(`${title} ${lines[next]}`);
+      next += 1;
+    }
+
+    sessions.push({ num, label: `S${num}`, titre: title });
+  }
+
+  return sessions.sort((a, b) => a.num - b.num);
+}
+
+function buildProgrammeSessionsIndex() {
+  const sessions = {};
+
+  for (let week = 1; week <= 52; week += 1) {
+    const filePath = path.join(__dirname, "programme_cap", `semaine_${week}.md`);
+    if (!fs.existsSync(filePath)) continue;
+    sessions[week] = extractSessionsFromWeekMarkdown(fs.readFileSync(filePath, "utf8"));
+  }
+
+  return sessions;
+}
+
+exports.programmeSessionsApi = functions.https.onRequest((req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    res.status(204).send("");
+    return;
+  }
+
+  if (req.method !== "GET") {
+    res.status(405).send("Method Not Allowed");
+    return;
+  }
+
+  res.status(200).json({ sessions: buildProgrammeSessionsIndex() });
+});
+
 // Endpoint d'API principal pour le coach
 exports.coachApi = functions.https.onRequest(async (req, res) => {
   // Configurer CORS
@@ -24,7 +93,7 @@ exports.coachApi = functions.https.onRequest(async (req, res) => {
   }
 
   try {
-    const { message, semaine_active, contexte_eleve, historique_messages } = req.body;
+    const { message, semaine_active, seance_active, seance_active_detail, contexte_eleve, historique_messages } = req.body;
 
     if (!message || !semaine_active || !contexte_eleve) {
       res.status(400).send("Bad Request: Missing required parameters");
@@ -61,6 +130,12 @@ ${basePrompt}
 === COURS DE LA SEMAINE ACTIVE (Semaine ${semaine_active}) ===
 Utilise ce cours comme référence thématique pour guider l'élève :
 ${coursSemaine}
+
+=== SEANCE ACTIVE ===
+- Position exacte : Semaine ${semaine_active} - S${seance_active || 1}
+- Titre de la seance : ${seance_active_detail?.titre || "Seance non precisee"}
+- Regle : commence tes reponses importantes en rappelant "Semaine ${semaine_active} - S${seance_active || 1}".
+- Ne saute pas vers S2, S3, S4 ou S5 sauf si l'eleve le demande explicitement.
 
 === CONTEXTE ACTUEL DE L'ÉLÈVE ===
 - Niveau : ${contexte_eleve.niveau}

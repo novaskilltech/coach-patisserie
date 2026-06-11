@@ -5,5 +5,9 @@
   "scripts": {
     "start": "node server.cjs",
     "check": "node --check public/app.js && node --check server.cjs && node --check api/coach.js && node --check api/programme-sessions.js && node --check functions/index.js"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.0",
+    "@supabase/supabase-js": "^2.108.1"
   }
 }

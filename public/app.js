@@ -56,19 +56,26 @@ async function initSupabaseClient() {
   const { data, error } = await supabaseClient.auth.getUser();
   if (!error) supabaseUser = data?.user || null;
 
-  supabaseClient.auth.onAuthStateChange((_event, session) => {
+  supabaseClient.auth.onAuthStateChange(async (event, session) => {
     supabaseUser = session?.user || null;
     updateSupabaseStatus();
+    if (event === "SIGNED_IN" && supabaseUser) {
+      await handleSupabaseSessionReady();
+    }
   });
 
   updateSupabaseStatus();
+  if (supabaseUser) {
+    await handleSupabaseSessionReady();
+  }
 }
 
 function updateSupabaseStatus(labelOverride, modeOverride) {
   const status = document.getElementById("supabaseStatus");
   const authBtn = document.getElementById("supabaseAuthBtn");
+  const googleBtn = document.getElementById("supabaseGoogleBtn");
   const syncBtn = document.getElementById("supabaseSyncBtn");
-  if (!status || !authBtn || !syncBtn) return;
+  if (!status || !authBtn || !syncBtn || !googleBtn) return;
 
   status.classList.remove("connected", "warning");
 
@@ -86,7 +93,8 @@ function updateSupabaseStatus(labelOverride, modeOverride) {
     status.classList.add("warning");
   }
 
-  authBtn.textContent = supabaseUser ? "Deconnexion" : "Connexion";
+  authBtn.textContent = supabaseUser ? "Deconnexion" : "Email";
+  googleBtn.disabled = !supabaseClient || Boolean(supabaseUser);
   syncBtn.disabled = !supabaseClient || !supabaseUser;
 }
 
@@ -931,6 +939,11 @@ function setupEventListeners() {
     supabaseAuthBtn.addEventListener("click", handleSupabaseAuth);
   }
 
+  const supabaseGoogleBtn = document.getElementById("supabaseGoogleBtn");
+  if (supabaseGoogleBtn) {
+    supabaseGoogleBtn.addEventListener("click", handleSupabaseGoogleAuth);
+  }
+
   const supabaseSyncBtn = document.getElementById("supabaseSyncBtn");
   if (supabaseSyncBtn) {
     supabaseSyncBtn.addEventListener("click", syncLocalDataToSupabase);
@@ -1291,6 +1304,7 @@ async function handleSupabaseAuth() {
   if (supabaseUser) {
     await supabaseClient.auth.signOut();
     supabaseUser = null;
+    localStorage.removeItem("supabase_last_user_id");
     updateSupabaseStatus();
     return;
   }
@@ -1316,18 +1330,59 @@ async function handleSupabaseAuth() {
   supabaseUser = data?.session?.user || null;
   updateSupabaseStatus();
   if (supabaseUser) {
-    if (await hasSupabaseRemoteData()) {
-      const shouldRestore = confirm("Des donnees existent deja sur Supabase. Voulez-vous les restaurer dans ce navigateur ?");
-      if (shouldRestore) {
-        await restoreSupabaseDataToLocal();
-        alert("Donnees Supabase restaurees dans ce navigateur.");
-        return;
-      }
-    }
-    await upsertSupabaseProfile();
+    await handleSupabaseSessionReady(true);
     alert("Compte Supabase connecte. Vous pouvez synchroniser vos donnees.");
   } else {
     alert("Compte cree. Verifiez votre email si la confirmation est activee dans Supabase.");
+  }
+}
+
+async function handleSupabaseSessionReady(forcePrompt = false) {
+  const userId = getCurrentUserId();
+  if (!userId) return;
+
+  const lastHandledUser = localStorage.getItem("supabase_last_user_id");
+  if (!forcePrompt && lastHandledUser === userId) return;
+
+  if (await hasSupabaseRemoteData()) {
+    const shouldRestore = confirm("Des donnees existent deja sur Supabase. Voulez-vous les restaurer dans ce navigateur ?");
+    if (shouldRestore) {
+      await restoreSupabaseDataToLocal();
+      localStorage.setItem("supabase_last_user_id", userId);
+      alert("Donnees Supabase restaurees dans ce navigateur.");
+      return;
+    }
+  }
+
+  await upsertSupabaseProfile();
+  localStorage.setItem("supabase_last_user_id", userId);
+}
+
+async function handleSupabaseGoogleAuth() {
+  if (!isSupabaseConfigured()) {
+    alert("Supabase n'est pas encore configure. Renseignez public/supabase-config.js.");
+    return;
+  }
+
+  if (!supabaseClient) {
+    await initSupabaseClient();
+  }
+
+  if (!supabaseClient) {
+    alert("Client Supabase indisponible. Verifiez le chargement du SDK Supabase.");
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: window.location.origin
+    }
+  });
+
+  if (error) {
+    alert(`Connexion Google impossible : ${error.message}`);
+    updateSupabaseStatus();
   }
 }
 
